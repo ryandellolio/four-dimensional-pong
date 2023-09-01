@@ -1,10 +1,12 @@
 # Four Dimensional Pong
 
+## Mechanics
+
 Pong, but in Four Dimensions
 
 Four Dimensional Pong was coded on [my stream](https://twitch.tv/codingmentalmodels) where I use coding projects to learn and teach mental models from life, math, physics, and other subjects. Follow me for more to come!
 
-## Motivation
+### Motivation
 
 Famously, special relativity introduces time as a fourth dimension, but higher dimensional phenomena are all around us.  Even in classical mechanics, if you have multiple particles, you need more than three dimensions.  String Theory might be 9 or 10 or 11 dimensional.  In machine learning, 10s, 100s or even higher dimensional data is common.  Hilbert Space, the setting of Quantum Mechanics, is often considered to be infinite dimensional.  
 
@@ -18,7 +20,7 @@ But frequently when students confront these topics or ideas for the first time, 
 
 Four Dimensional Pong is meant to be a simple example of a more-than-three dimensional system that can be visualized and used to help understand higher dimensions.  
 
-### Answers
+#### Answers
 
 Roughly speaking, these are the answers to the questions above, in a slightly more pedogogical order.
 
@@ -57,13 +59,13 @@ Given those answers,
         * Use Color for the "long dimension"!  Blue for the player, red for the opponent.
         * The game is played in a cube of 3 spatial dimensions, with one blue paddle and one red that can't touch each other.  The ball bounces around the cube becoming redder and redder until it's the same as the paddle at which point it can be hit.  Then it beomes bluer and bluer, etc. until someone misses and the opponent gains points.
 
-## Design
+### Design
 
-### Overview
+#### Overview
 
 Implement Pong, but in four spatial dimensions, using color to define the "w" direction.  
 
-### Definitions
+#### Definitions
 
 * Four spatial dimensions, (w, x, y, z).  
     * x, y, and z will be rendered as x, y, z
@@ -75,7 +77,7 @@ Implement Pong, but in four spatial dimensions, using color to define the "w" di
 * Camera Angle: Slightly back, rotated upwards to have perspective along the z axis.
 
 
-## Mistakes
+### Mistakes
 
 I like to log mistakes that I make while working on a project.  It keeps me honest and helps me identify how I can get better.  Here's that log.  I'm sure there were others.
 
@@ -86,3 +88,59 @@ I like to log mistakes that I make while working on a project.  It keeps me hone
 * We misunderstood how `iyes_loopless` states were instantiated and spent some time with two versions of those states, leading to confusing error messages.
     * Noticed that `NextState` was being used and thought about what that could be.
     * Bit the bullet on loopless states not being explicitly instantiated and tried to work out how that could be.
+
+# Building
+
+There are 2 options for running this application.  While desktop mode requires a working Rust build environment, docker provides easy access to pre-built container.
+
+## Desktop mode
+
+To run in desktop mode, use:
+
+`cargo run` at the root of this folder
+
+## Docker mode
+
+### Overview
+
+Docker mode makes use of the native web assembly capabilities of Bevy to render 4DP in a browser. This relies on the wasm-server-runner library which can be installed using `cargo install -f wasm-server-runner` if missing.
+
+Without docker, you can run the web assembly version by running:
+
+`cargo run --release --target wasm32-unknown-unknown`
+
+and then accessing http://127.0.0.1:1334
+
+###
+
+# Building
+
+There are 2 options for running this application.  While desktop mode requires a working Rust build environment, docker provides easy access to pre-built container.
+
+## Desktop mode
+
+To run in desktop mode, use:
+
+`cargo run` at the root of this folder
+
+## Docker mode
+
+### Overview
+
+Docker mode makes use of the native web assembly capabilities of Bevy to render 4DP in a browser. 
+
+Without docker, you can run the web assembly version by running:
+
+`cargo run --release --target wasm32-unknown-unknown`
+
+and then accessing http://127.0.0.1:1334
+
+### Building and running the container locally
+
+Build
+
+`docker build -t four-dimensional-pong .`
+
+Run
+
+`docker run -it --rm --name run-four-dimensional-pong -p 1334:1334 four-dimensional-pong`
