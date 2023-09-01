@@ -14,7 +14,7 @@ RUN cargo install -f wasm-bindgen-cli
 WORKDIR /usr/src/four-dimensional-pong
 COPY . .
 RUN cargo build --release --target wasm32-unknown-unknown
-RUN wasm-bindgen --out-dir ./out/ --target web ./target/wasm32-unknown-unknown/release/four_dimensional_pong.wasm
+RUN wasm-bindgen --out-dir ./out/ --target web ./target/wasm32-unknown-unknown/release/four-dimensional-pong.wasm
 
 # Stage 2: Serve content with Nginx
 FROM nginx:alpine
