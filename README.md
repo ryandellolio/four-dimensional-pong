@@ -93,29 +93,6 @@ I like to log mistakes that I make while working on a project.  It keeps me hone
 
 There are 2 options for running this application.  While desktop mode requires a working Rust build environment, docker provides easy access to pre-built container.
 
-## Desktop mode
-
-To run in desktop mode, use:
-
-`cargo run` at the root of this folder
-
-## Docker mode
-
-### Overview
-
-Docker mode makes use of the native web assembly capabilities of Bevy to render 4DP in a browser. This relies on the wasm-server-runner library which can be installed using `cargo install -f wasm-server-runner` if missing.
-
-Without docker, you can run the web assembly version by running:
-
-`cargo run --release --target wasm32-unknown-unknown`
-
-and then accessing http://127.0.0.1:1334
-
-###
-
-# Building
-
-There are 2 options for running this application.  While desktop mode requires a working Rust build environment, docker provides easy access to pre-built container.
 
 ## Desktop mode
 
@@ -123,13 +100,26 @@ To run in desktop mode, use:
 
 `cargo run` at the root of this folder
 
-## Docker mode
+### Toolchain requirements
+Note: the project currently requires the nightly compiler due to the use of the `-Zshare-generics=y` rustflag in Cargo.toml. 
+
+#### Installation
+
+To install:
+`rustup toolchain install nightly`
+
+#### Usage
+
+If the nightly toolchain is not your default, to run the application use:
+`cargo +nightly run`
+
+## Simple web mode using docker
 
 ### Overview
 
-Docker mode makes use of the native web assembly capabilities of Bevy to render 4DP in a browser. 
+This mode makes use of the native web assembly capabilities of Bevy to render 4DP in a browser. This relies on the wasm-server-runner library which can be installed using `cargo install -f wasm-server-runner` if missing.
 
-Without docker, you can run the web assembly version by running:
+Without docker, you can run the web assembly version locally by running:
 
 `cargo run --release --target wasm32-unknown-unknown`
 
