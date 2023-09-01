@@ -2,7 +2,7 @@
 FROM rust:1-bullseye as build
 
 # Install OS build dependencies for bevy and web assembly
-RUN apt-get update && apt-get install -y libasound2-dev libudev-dev binaryen
+RUN apt-get update && apt-get install -y libasound2-dev libudev-dev binaryen build-essential
 
 # Add web assembly target
 RUN rustup target add wasm32-unknown-unknown
